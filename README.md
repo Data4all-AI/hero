@@ -2,6 +2,19 @@
 
 # HERO — Hybrid Emergency Route Optimizer on Microsoft Fabric
 
+## Table of Contents
+- [Overview](#overview)
+- [Key Feature](#key-features)
+- [Expected Impact](#-expected-impact)
+- [How It Works](#-how-it-works)
+- [Architecture](#-architecture-high-level)
+- [Data Model](#%EF%B8%8F-data-model-essentials)
+- [Installation Guide](#-installation-guide-for-microsoft-fabric--hero)
+- [Notable Implementation Details](#%EF%B8%8F-notable-implementation-details)
+- [Known Limitations](#known-limitations)
+- [Future Roadmap](#future-roadmap)
+
+
 ## Overview
 
 Emergency response teams are true heroes — but the navigation tools they rely on often aren’t. Traditional systems like Google Maps or Waze are optimized for everyday drivers, not emergency vehicles. During critical missions, these systems can suggest routes congested by the very incidents they’re responding to, or fail to consider that emergency vehicles with sirens can bypass certain traffic rules.
@@ -34,7 +47,7 @@ By combining AI, real-time intelligence, and Microsoft Fabric’s unified analyt
 
 ---
 
-## ✨ What it does
+## ✨ How it works
 
 - 🚑 Picks the **fastest emergency route** *right now*:
   - Compares Google **TRAFFIC_AWARE_OPTIMAL** vs **TRAFFIC_UNAWARE**
@@ -52,24 +65,6 @@ By combining AI, real-time intelligence, and Microsoft Fabric’s unified analyt
 
  <img width="1122" height="949" alt="hero_HLA" src="https://github.com/user-attachments/assets/08d10ee2-4194-4b69-ac10-bce23de93e5d" />
 
-
----
-
-## 🔐 Secrets & config
-
-- **Azure Key Vault** for:
-  - `google-maps-api-key`
-  - `conn-str-route-analysis`
-  - `conn-str-route-segments`
-  - `conn-str-vehicles-telemetry`
-  - `twilio-sid`
-  - `twilio-token`
- 
-- **Fabric Variables** for:
-  - `azure-key-vault`
-  - `ML-model`
-
-- **UDFs** use `fabric user data functions` SDK.
 
 ---
 
@@ -265,10 +260,23 @@ In **Azure Key Vault**, create/update:
 - **Telemetry**:
   - Currently simulated, with intervals derived from chosen ETA
   - Emits progress_pct and status (arrived on last point)
-  - Expected to come from real vehicle telemetry systems.
  
 ## Known limitations
 
-- **avg_speed_kmh** input param for ML model is a placeholder (50 km/h) until TomTom or historical speed model is integrated for calculating avg speed from segments.
-- **Notebook + UDFs** assume polyline decoding and ETA are available — handle Google API quotas
-- **Materialized views** in KQL have restrictions; we use functions and update policies where needed
+- **Machine Learning model**: currently trained on dummy data for this POC. The solution will improve as real ambulance telemetry is collected over time.
+- **Telemetry simulation**: vehicle telemetry is simulated; future versions will connect to real fleet tracking or IoT systems.
+- **Average speed input**: avg_speed_kmh is a fixed placeholder (50 km/h). Future releases will derive it from TomTom APIs or historical segment data.
+- **Notebook & UDFs**: assume polyline decoding and ETA fields are always available. Production deployments must handle Google API quotas and errors.
+- **KQL materialization**: materialized views have functional limits; some aggregations are implemented as functions with update policies instead.
+
+## Future Roadmap
+
+- **Real telemetry integration** connect directly to live ambulance GPS and IoT data streams.
+- **Enhanced ML model**: retrain continuously on real missions to improve siren advantage accuracy.
+- **Traffic intelligence**: integrate TomTom data for real-time speed estimation and congestion prediction.
+- **Predictive dispatching**: use historical response data to anticipate optimal vehicle allocation before incidents occur.
+- **Mobile integration**: deliver route guidance and alerts directly to drivers’ tablets or onboard systems.
+- **Mid-route rerouting**: dynamically adjust paths based on evolving traffic and mission priorities.
+- **Helicopter & multi-mode support**: extend routing to include air ambulances and hybrid transport chains.
+- **Weather awareness**: incorporate live weather conditions to adjust ETA predictions and routing safety specially for helicopters.
+
