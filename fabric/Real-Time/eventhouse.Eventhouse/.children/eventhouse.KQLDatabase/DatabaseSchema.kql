@@ -1,0 +1,69 @@
+// KQL script
+// Use management commands in this script to configure your database items, such as tables, functions, materialized views, and more.
+
+
+.create-merge table tb_route_analysis (mission_id:string, timestamp:string, vehicle_id:string, route_id:string, eta_google_aware_min:real, eta_theoretical_min:real, eta_hero_min:real, time_saved_vs_google_min:real, distance_m_theoretical:long, distance_m_google:long, decision:string, congestion_score:real, congestion_label:string, EventProcessedUtcTime:datetime, PartitionId:long, EventEnqueuedUtcTime:datetime) 
+.create-merge table tb_route_segments (mission_id:string, route_id:string, timestamp:string, sequence:string, latitude:string, longitude:string, EventProcessedUtcTime:datetime, PartitionId:long, EventEnqueuedUtcTime:datetime) 
+.create-merge table tb_vehicles_telemetry (vehicle_id:string, route_id:string, sequence:long, timestamp:string, latitude:real, longitude:real, status:string, progress_pct:real, speed_kmh:real, EventProcessedUtcTime:datetime, PartitionId:long, EventEnqueuedUtcTime:datetime) 
+.create-merge table tb_vehicles_telemetry_silver (route_id:string, vehicle_id:string, latitude:real, longitude:real, sequence:int, timestamp:datetime, progress_pct:int, speed_kmh:real, status:string, processed_timestamp:datetime) 
+.create-merge table tb_route_segments_silver (mission_id:int, route_id:string, latitude:real, longitude:real, sequence:int, timestamp:datetime, processed_timestamp:datetime) 
+.create-merge table tb_route_analysis_silver (mission_id:int, route_id:string, vehicle_id:string, timestamp:datetime, eta_google_aware_min:real, eta_theoretical_min:real, eta_hero_min:real, time_saved_vs_google_min:real, distance_m_theoretical:long, distance_m_google:long, decision:string, congestion_score:real, congestion_label:string, processed_timestamp:datetime) 
+.create-merge table tb_routes_wkt_silver (route_id:string, wkt:string, processed_timestamp:datetime) 
+.create-or-alter function with (folder = "gold", docstring = "Routes + latest vehicle position, icon + WKT", skipvalidation = "true") routes_latest_vehicles_gold() {
+let route =
+    tb_route_segments_silver
+    | join kind=leftouter tb_routes_wkt_silver on route_id
+    | project
+        route_id,
+        latitude = 0.0/0.0,
+        longitude = 0.0/0.0,
+        sequence,
+        timestamp,
+        progress_pct = int(0),
+        speed_kmh = real(0),
+        status = 'na',
+        icon_map = wkt,
+        ['kind'] = "route",
+        key = strcat(route_id, "-", tostring(sequence), "-", "wkt");
+let live =
+    mv_latest_telem
+    | project
+        route_id,
+        latitude,
+        longitude,
+        sequence = int(0),
+        timestamp,
+        progress_pct,
+        speed_kmh,
+        status,
+        icon_map,
+        ['kind'] = "vehicle",
+        key = strcat(route_id, "-", tostring(sequence), "-", "img");
+union route, live
+| order by route_id asc, kind asc, sequence asc
+}
+.create-or-alter function with (folder = "gold", docstring = "Vehicles telemetry + route WKT", skipvalidation = "true") vehicles_telemetry_gold() {
+  tb_vehicles_telemetry_silver
+  | join kind=leftouter tb_routes_wkt_silver on route_id
+  | project
+      route_id, 
+      vehicle_id, 
+      latitude, 
+      longitude, 
+      sequence, 
+      timestamp, 
+      progress_pct, 
+      speed_kmh, 
+      status, 
+      wkt,
+      key = strcat(route_id, "-", tostring(sequence), "-", iif(isnotempty(wkt), "wkt", "img"))
+  | order by route_id asc, timestamp asc, sequence asc
+}
+.create-or-alter materialized-view  mv_latest_telem on table tb_vehicles_telemetry_silver { tb_vehicles_telemetry_silver
+    | extend icon_map = "https://img.icons8.com/?size=100&id=14739&format=png&color=000000"
+    | summarize arg_max(timestamp, *) by vehicle_id }
+.alter table tb_vehicles_telemetry policy streamingingestion "{\"IsEnabled\":false,\"HintAllocatedRate\":null,\"NumberOfRowStores\":null,\"SealIntervalLimit\":null,\"SealThresholdBytes\":null,\"UsageTags\":[],\"IsMaintenanceActive\":false}"
+.alter table tb_vehicles_telemetry_silver policy update "[{\"IsEnabled\":true,\"Source\":\"tb_vehicles_telemetry\",\"Query\":\"tb_vehicles_telemetry | extend processed_timestamp=now() | project route_id, vehicle_id, latitude=todouble(latitude), longitude=todouble(longitude), sequence=toint(sequence), timestamp=todatetime(timestamp), progress_pct=toint(progress_pct), speed_kmh=todouble(speed_kmh), status,processed_timestamp\",\"IsTransactional\":true,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null}]"
+.alter table tb_route_segments_silver policy update "[{\"IsEnabled\":true,\"Source\":\"tb_route_segments\",\"Query\":\"tb_route_segments | extend latitude=todouble(latitude), longitude=todouble(longitude), sequence=toint(sequence), mission_id=toint(mission_id), timestamp=todatetime(timestamp), processed_timestamp=now() | project mission_id, route_id, latitude, longitude, sequence, timestamp, processed_timestamp\",\"IsTransactional\":true,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null}]"
+.alter table tb_route_analysis_silver policy update "[{\"IsEnabled\":true,\"Source\":\"tb_route_analysis\",\"Query\":\"tb_route_analysis | extend timestamp=todatetime(timestamp), eta_google_aware_min=toreal(eta_google_aware_min), eta_theoretical_min=toreal(eta_theoretical_min), eta_hero_min=toreal(eta_hero_min), time_saved_vs_google_min=toreal(time_saved_vs_google_min), distance_m_theoretical=tolong(distance_m_theoretical), distance_m_google=tolong(distance_m_google), congestion_score=toreal(congestion_score), mission_id=toint(mission_id), processed_timestamp=now() | project mission_id, route_id, vehicle_id, timestamp, eta_google_aware_min, eta_theoretical_min, eta_hero_min, time_saved_vs_google_min, distance_m_theoretical, distance_m_google, decision, congestion_score, congestion_label, processed_timestamp\",\"IsTransactional\":true,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null}]"
+.alter table tb_routes_wkt_silver policy update "[{\"IsEnabled\":true,\"Source\":\"tb_route_segments_silver\",\"Query\":\"\\n      tb_route_segments_silver\\n      | sort by route_id asc, sequence asc\\n      | summarize\\n          wkt = strcat(\'LINESTRING(\', strcat_array(make_list(strcat(tostring(longitude), \' \', tostring(latitude))), \', \'), \')\'),\\n          timestamp = max(timestamp)\\n        by route_id\\n      | extend processed_timestamp = now()\\n      | project\\n          route_id,\\n          wkt,\\n          processed_timestamp\\n\\n    \",\"IsTransactional\":false,\"PropagateIngestionProperties\":false,\"ManagedIdentity\":null}]"

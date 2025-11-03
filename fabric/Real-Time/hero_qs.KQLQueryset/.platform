@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLQueryset",
+    "displayName": "hero_qs",
+    "description": "hero_qs"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1d1fb7a4-1852-92a7-4173-a6cbe423f30c"
+  }
+}

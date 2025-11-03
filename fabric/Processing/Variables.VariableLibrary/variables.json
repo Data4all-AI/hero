@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/variableLibrary/definition/variables/1.0.0/schema.json",
+  "variables": [
+    {
+      "name": "azure-key-vault",
+      "note": "",
+      "type": "String",
+      "value": "https://hero-akv.vault.azure.net/"
+    },
+    {
+      "name": "siren-model",
+      "note": "",
+      "type": "String",
+      "value": "ml_siren_advantage-AutoMLModel"
+    }
+  ]
+}

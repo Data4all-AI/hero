@@ -1,0 +1,158 @@
+table tb_route_analysis
+	lineageTag: 93c0fffd-3b18-477c-892a-11244dd988a8
+
+	column mission_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 3413e109-6ea8-45d3-a5ee-2ec43fd14e4d
+		summarizeBy: sum
+		sourceColumn: mission_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column timestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetimeoffset
+		lineageTag: 8b6cc762-d4f1-48e7-9322-e104f0375adc
+		summarizeBy: none
+		sourceColumn: timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column vehicle_id
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 2b8375a0-8b29-4ef6-9baa-f346bd222092
+		summarizeBy: none
+		sourceColumn: vehicle_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column route_id
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 1dbfcd07-5b0f-4ee5-ba8a-f253c82542f2
+		summarizeBy: none
+		sourceColumn: route_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column eta_google_aware_min
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 37b9f7f3-b90e-4f74-af23-c04ece488b7a
+		summarizeBy: sum
+		sourceColumn: eta_google_aware_min
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column eta_theoretical_min
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 3b606f13-03c9-4966-9325-705c79be6527
+		summarizeBy: sum
+		sourceColumn: eta_theoretical_min
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column eta_hero_min
+		dataType: double
+		sourceProviderType: double
+		lineageTag: d231936d-19e3-4c3f-86e8-35ee41221323
+		summarizeBy: sum
+		sourceColumn: eta_hero_min
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column time_saved_vs_google_min
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 418f77c4-c2c0-42ee-8211-f0708ce9a2b4
+		summarizeBy: sum
+		sourceColumn: time_saved_vs_google_min
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column distance_m_theoretical
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 72eef6bf-0f2c-4790-bb6a-7a758bc9e020
+		summarizeBy: sum
+		sourceColumn: distance_m_theoretical
+
+		annotation SummarizationSetBy = Automatic
+
+	column distance_m_google
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 2ad7dcd7-0425-4db6-a24c-1ba24e393365
+		summarizeBy: sum
+		sourceColumn: distance_m_google
+
+		annotation SummarizationSetBy = Automatic
+
+	column decision
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 581c3afd-5df2-4a50-aa80-25694d31ac0a
+		summarizeBy: none
+		sourceColumn: decision
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Congestion Score'
+		dataType: double
+		sourceProviderType: double
+		lineageTag: eab90e1c-ad95-41e3-bcdf-8899eeb74de5
+		summarizeBy: sum
+		sourceColumn: Congestion Score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column congestion_label
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 00055a6e-f492-4e31-a340-f9eb5b47fcd3
+		summarizeBy: none
+		sourceColumn: congestion_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column processed_timestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetimeoffset
+		lineageTag: 2c9b4ee2-71f8-451b-9e3e-a87869aaf7d9
+		summarizeBy: none
+		sourceColumn: processed_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tb_route_analysis = m
+		mode: directQuery
+		source =
+				let
+				    Source = AzureDataExplorer.Contents("https://trd-64402wcfv837yzr036.z9.kusto.fabric.microsoft.com", "eventhouse"),
+				    tb_route_analysis1 = Source{[Name="tb_route_analysis_silver"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(tb_route_analysis1,{{"congestion_score", "Congestion Score"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,66 @@
+[
+  {
+    "uniqueIdentifier": "05de2673-db52-4e5c-bd14-66b57ebbc18f",
+    "payload": {
+      "name": "EventStream",
+      "metadata": {
+        "eventstreamArtifactId": "0df2020b-1329-4cb6-be5f-c9a5a068cc8a"
+      }
+    },
+    "type": "eventstreamSource-v1"
+  },
+  {
+    "uniqueIdentifier": "209660b4-6e22-4f31-abc3-cd4f22511dc2",
+    "payload": {
+      "name": "dispatch-stream",
+      "definition": {
+        "type": "Event",
+        "instance": "{\"templateId\":\"SourceEvent\",\"templateVersion\":\"1.1\",\"steps\":[{\"name\":\"SourceEventStep\",\"id\":\"71684e68-4729-4176-8dfe-4b4168208c5b\",\"rows\":[{\"name\":\"SourceSelector\",\"kind\":\"SourceReference\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"05de2673-db52-4e5c-bd14-66b57ebbc18f\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "a3f417a8-e756-4aab-9c02-d0f2c2ae84e6",
+    "payload": {
+      "name": "dispatch-stream alert",
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"steps\":[{\"id\":\"eb92a482-783e-4a66-bb80-f77dfd3026a3\",\"name\":\"FieldsDefaultsStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"209660b4-6e22-4f31-abc3-cd4f22511dc2\"}],\"kind\":\"EventReference\",\"name\":\"event\",\"type\":\"complex\"}],\"kind\":\"Event\",\"name\":\"EventSelector\"}]},{\"id\":\"cb61eabe-e03d-4f06-a224-d9248a562bbb\",\"name\":\"EventDetectStep\",\"rows\":[{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"status\"}],\"kind\":\"EventField\",\"name\":\"EventFieldSelector\"},{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"IsEqualTo\"},{\"name\":\"value\",\"type\":\"string\",\"value\":\"dispatched\"}],\"kind\":\"TextValueCondition\",\"name\":\"TextValueCondition\"}]},{\"id\":\"def92485-298e-4045-bbbb-996ae4fa2bae\",\"name\":\"ActStep\",\"rows\":[{\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"giacomo.cuneo@data4all.it\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"name\":\"string\",\"type\":\"string\",\"value\":\"A new ambulance has been dispatched\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"name\":\"string\",\"type\":\"string\",\"value\":\"New dispatch \"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"dispatch_id\"}],\"kind\":\"EventFieldReference\",\"type\":\"complex\"},{\"name\":\"string\",\"type\":\"string\",\"value\":\"  with triage code \"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"dispatch_triage_code\"}],\"kind\":\"EventFieldReference\",\"type\":\"complex\"},{\"name\":\"string\",\"type\":\"string\",\"value\":\"  for incident number \"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"emergency_reporting_number\"}],\"kind\":\"EventFieldReference\",\"type\":\"complex\"},{\"name\":\"string\",\"type\":\"string\",\"value\":\" \"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}],\"kind\":\"EmailMessage\",\"name\":\"EmailBinding\"}]}],\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.3\"}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": true
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "a17da32d-084c-42a1-8d60-b5c3b7988fd6",
+    "payload": {
+      "name": "dispatch-stream alert",
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"steps\":[{\"id\":\"009add49-6783-439b-8ada-e0589b041fb2\",\"name\":\"FieldsDefaultsStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"209660b4-6e22-4f31-abc3-cd4f22511dc2\"}],\"kind\":\"EventReference\",\"name\":\"event\",\"type\":\"complex\"}],\"kind\":\"Event\",\"name\":\"EventSelector\"}]},{\"id\":\"5005fb2d-eee6-44d9-b9ac-240ccd7384d2\",\"name\":\"EventDetectStep\",\"rows\":[{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"status\"}],\"kind\":\"EventField\",\"name\":\"EventFieldSelector\"},{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"IsEqualTo\"},{\"name\":\"value\",\"type\":\"string\",\"value\":\"dispatched\"}],\"kind\":\"TextValueCondition\",\"name\":\"TextValueCondition\"}]},{\"id\":\"dd621d3e-1884-4ad9-a548-89cf59fa8889\",\"name\":\"EventDetectStep\",\"rows\":[{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"dispatch_triage_code\"}],\"kind\":\"EventField\",\"name\":\"EventFieldSelector\"},{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"IsNotEqualTo\"},{\"name\":\"value\",\"type\":\"string\",\"value\":\"verde\"}],\"kind\":\"TextValueCondition\",\"name\":\"TextValueCondition\"}]},{\"id\":\"fe2fe59a-8630-46c2-a164-3397e8b751f0\",\"name\":\"ActStep\",\"rows\":[{\"arguments\":[{\"__typename\":\"templateInstanceV2StringArg\",\"name\":\"fabricJobConnectionDocumentId\",\"type\":\"string\",\"value\":\"a2b8cd4d-bf00-4255-996c-b1f22d609b22\"},{\"name\":\"parameters\",\"type\":\"array\",\"values\":[{\"arguments\":[{\"name\":\"parameterName\",\"type\":\"string\",\"value\":\"mission_id\"},{\"name\":\"parameterValue\",\"type\":\"complexArray\",\"values\":[{\"name\":\"string\",\"type\":\"string\",\"value\":\"​\"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"dispatch_id\"}],\"kind\":\"EventFieldReference\",\"type\":\"complexReference\"},{\"name\":\"string\",\"type\":\"string\",\"value\":\" \"}]},{\"name\":\"parameterType\",\"type\":\"string\",\"value\":\"Number\"}],\"kind\":\"FabricItemParameter\",\"type\":\"complex\"},{\"arguments\":[{\"name\":\"parameterName\",\"type\":\"string\",\"value\":\"vehicle_id\"},{\"name\":\"parameterValue\",\"type\":\"complexArray\",\"values\":[{\"name\":\"string\",\"type\":\"string\",\"value\":\"​\"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"vehicle_number\"}],\"kind\":\"EventFieldReference\",\"type\":\"complexReference\"},{\"name\":\"string\",\"type\":\"string\",\"value\":\" \"}]},{\"name\":\"parameterType\",\"type\":\"string\",\"value\":\"String\"}],\"kind\":\"FabricItemParameter\",\"type\":\"complex\"},{\"arguments\":[{\"name\":\"parameterName\",\"type\":\"string\",\"value\":\"origin_coord\"},{\"name\":\"parameterValue\",\"type\":\"complexArray\",\"values\":[{\"name\":\"string\",\"type\":\"string\",\"value\":\"​\"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"origin_coordinate\"}],\"kind\":\"EventFieldReference\",\"type\":\"complexReference\"},{\"name\":\"string\",\"type\":\"string\",\"value\":\" \"}]},{\"name\":\"parameterType\",\"type\":\"string\",\"value\":\"String\"}],\"kind\":\"FabricItemParameter\",\"type\":\"complex\"},{\"arguments\":[{\"name\":\"parameterName\",\"type\":\"string\",\"value\":\"incident_coord\"},{\"name\":\"parameterValue\",\"type\":\"complexArray\",\"values\":[{\"name\":\"string\",\"type\":\"string\",\"value\":\"​\"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"incident_coordinate\"}],\"kind\":\"EventFieldReference\",\"type\":\"complexReference\"},{\"name\":\"string\",\"type\":\"string\",\"value\":\" \"}]},{\"name\":\"parameterType\",\"type\":\"string\",\"value\":\"String\"}],\"kind\":\"FabricItemParameter\",\"type\":\"complex\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]},{\"__typename\":\"templateInstanceV2StringArg\",\"name\":\"workspaceId\",\"type\":\"string\",\"value\":\"31f66446-fbac-4a10-b8cd-612c2c7b9c9d\"},{\"__typename\":\"templateInstanceV2StringArg\",\"name\":\"itemId\",\"type\":\"string\",\"value\":\"c2f0934c-28a2-4890-9acb-1ce313ed6b61\"},{\"__typename\":\"templateInstanceV2StringArg\",\"name\":\"itemType\",\"type\":\"string\",\"value\":\"SynapseNotebook\"},{\"__typename\":\"templateInstanceV2StringArg\",\"name\":\"subitemId\",\"type\":\"string\",\"value\":\"\"},{\"__typename\":\"templateInstanceV2StringArg\",\"name\":\"jobType\",\"type\":\"string\",\"value\":\"RunNotebook\"}],\"kind\":\"FabricItemInvocation\",\"name\":\"FabricItemBinding\"}]}],\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.3\"}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": true
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "a2b8cd4d-bf00-4255-996c-b1f22d609b22",
+    "payload": {
+      "name": "Fabric item action",
+      "fabricItem": {
+        "itemId": "13ed6b61-1ce3-9acb-4890-28a2c2f0934c",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemType": "SynapseNotebook"
+      },
+      "jobType": "RunNotebook"
+    },
+    "type": "fabricItemAction-v1"
+  }
+]

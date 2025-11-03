@@ -1,0 +1,174 @@
+{
+  "config": "{\"version\":\"5.67\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY25SU10\",\"type\":2,\"version\":{\"visual\":\"2.1.0\",\"report\":\"3.0.0\",\"page\":\"2.3.0\"}}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"isPersistentUserStateDisabled\":false,\"hideVisualContainerHeader\":false,\"useStylableVisualContainerHeader\":true,\"exportDataMode\":1,\"useNewFilterPaneExperience\":true,\"optOutNewFilterPaneExperience\":false,\"defaultFilterActionIsDataFilter\":false,\"useCrossReportDrillthrough\":false,\"allowChangeFilterTypes\":true,\"allowInlineExploration\":false,\"disableFilterPaneSearch\":false,\"enableDeveloperMode\":false,\"useEnhancedTooltips\":true,\"useScaledTooltips\":false,\"useDefaultAggregateDisplayName\":true,\"queryLimitOption\":0,\"customMemoryLimit\":\"1048576\",\"customTimeoutLimit\":\"225\"},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "filters": "[]",
+  "layoutOptimization": 0,
+  "pods": [
+    {
+      "boundSection": "aec6a1727fc762f96140",
+      "config": "{}",
+      "name": "fabcde9745bc62188259",
+      "parameters": "[{\"name\":\"5c6def58068d0066d47a\",\"boundFilter\":\"ead8c469159d852951a9\",\"fieldExpr\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"tb_route_analysis\"}},\"Property\":\"vehicle_id\"}}},{\"name\":\"60786fc260aa42e444fd\",\"boundFilter\":\"ae312d4662cfd728c4ab\",\"fieldExpr\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"tb_route_analysis\"}},\"Property\":\"mission_id\"}},\"asAggregation\":true},{\"name\":\"6c899df669b89f2ad31b\",\"boundFilter\":\"2a20c17fe83f258c7a19\",\"fieldExpr\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"routes_latest_vehicles_gold\"}},\"Property\":\"key\"}}}]",
+      "type": 1
+    }
+  ],
+  "publicCustomVisuals": [
+    "PBI_CV_16948668_E17D_454B_8664_2F2C470EA8C1",
+    "routemap863828C4992A473C9A5FB6A6B0EDF5DC"
+  ],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY25SU10",
+            "path": "BaseThemes/CY25SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    },
+    {
+      "resourcePackage": {
+        "items": [
+          {
+            "name": "iconMapV34089C0EB522B416294AA926F71B4FDBBx.pbiviz.json",
+            "path": "iconMapV34089C0EB522B416294AA926F71B4FDBBx.pbiviz.json",
+            "type": 5
+          }
+        ],
+        "name": "iconMapV34089C0EB522B416294AA926F71B4FDBBx",
+        "type": 0
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"objects\":{\"pageRefresh\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"duration\":{\"expr\":{\"Literal\":{\"Value\":\"'PT1S'\"}}}}}],\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.1}}}}}}}],\"outspace\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.1}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"50D\"}}}}}]}}",
+      "displayName": "Landing",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "41819b198b16b1dad257",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"18b0e1833a02353ac034\",\"layouts\":[{\"id\":0,\"position\":{\"x\":477.2881355932203,\"y\":408.13559322033893,\"z\":2000,\"width\":325.4237288135593,\"height\":69.15254237288136,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"icon\":[{\"properties\":{\"shapeType\":{\"expr\":{\"Literal\":{\"Value\":\"'blank'\"}}}},\"selector\":{\"id\":\"default\"}}],\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'pill'\"}}},\"roundEdge\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}},\"selector\":{\"id\":\"default\"}}],\"text\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}},{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Go'\"}}}},\"selector\":{\"id\":\"default\"}}],\"fill\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}},{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.2}}}}}},\"selector\":{\"id\":\"hover\"}},{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#ffffff'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}},\"selector\":{\"id\":\"default\"}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"glow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"visualLink\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"type\":{\"expr\":{\"Literal\":{\"Value\":\"'PageNavigation'\"}}},\"navigationSection\":{\"expr\":{\"Literal\":{\"Value\":\"'9fc3565642c4a8b8e541'\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}},\"position\":{\"expr\":{\"Literal\":{\"Value\":\"'Outer'\"}}},\"preset\":{\"expr\":{\"Literal\":{\"Value\":\"'Center'\"}}},\"angle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"shadowDistance\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"shadowBlur\":{\"expr\":{\"Literal\":{\"Value\":\"15L\"}}},\"shadowSpread\":{\"expr\":{\"Literal\":{\"Value\":\"3L\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"70L\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 69.15,
+          "width": 325.42,
+          "x": 477.29,
+          "y": 408.14,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"60ea9a6db75f8106d6cb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":455.92630501535314,\"y\":195.20982599795292,\"z\":1000,\"width\":369.4575230296827,\"height\":98.25997952917093,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"tb_route_analysis.mission_id\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"tb_route_analysis\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"mission_id\"},\"Name\":\"tb_route_analysis.mission_id\",\"NativeReferenceName\":\"First mission_id\"}]},\"syncGroup\":{\"groupName\":\"mission_id\",\"fieldChanges\":true,\"filterChanges\":true},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"header\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"14D\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"tb_route_analysis\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"mission_id\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"20670L\"}}]]}}}]}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Select Mission'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"17D\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 98.26,
+          "width": 369.46,
+          "x": 455.93,
+          "y": 195.21,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"f9c2d041f72edb802b98\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":4.1300296516055823e-14,\"z\":0,\"width\":1280,\"height\":158.52610030706242,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"HERO\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"20pt\"}}],\"horizontalTextAlignment\":\"center\"},{\"textRuns\":[{\"value\":\"Hybrid Emergency Route Optimizer\",\"textStyle\":{\"fontSize\":\"20pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]}}}",
+          "filters": "[]",
+          "height": 158.53,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{\"objects\":{\"pageRefresh\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"duration\":{\"expr\":{\"Literal\":{\"Value\":\"'PT1S'\"}}}}}]}}",
+      "displayName": "Icon Map",
+      "displayOption": 1,
+      "filters": "[{\"name\":\"daafbb79101d5c0b7bba\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"routes_vehicles_last_position_v2\"}},\"Property\":\"key\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}},{\"name\":\"2e4e96bc5d283fd44e26\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"tb_route_analysis\"}},\"Property\":\"route_id\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
+      "height": 720.00,
+      "name": "9fc3565642c4a8b8e541",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"2259c259f69337ee33dc\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.17093142272262,\"y\":90.39918116683725,\"z\":1000,\"width\":1270.8290685772774,\"height\":632.7942681678608,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"iconMapV34089C0EB522B416294AA926F71B4FDBBx\",\"projections\":{\"category\":[{\"queryRef\":\"routes_latest_vehicles_gold.key\",\"active\":true}],\"Longitude\":[{\"queryRef\":\"Avg(routes_latest_vehicles_gold.longitude)\"}],\"Latitude\":[{\"queryRef\":\"Avg(routes_latest_vehicles_gold.latitude)\"}],\"Size\":[{\"queryRef\":\"Sum(routes_latest_vehicles_gold.speed_kmh)\"}],\"tooltip\":[{\"queryRef\":\"Min(tb_route_analysis.vehicle_id)\"},{\"queryRef\":\"Sum(routes_latest_vehicles_gold.progress_pct)\"},{\"queryRef\":\"Sum(routes_latest_vehicles_gold.speed_kmh)1\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"routes_latest_vehicles_gold\",\"Type\":0},{\"Name\":\"t\",\"Entity\":\"tb_route_analysis\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"key\"},\"Name\":\"routes_latest_vehicles_gold.key\",\"NativeReferenceName\":\"key\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"longitude\"}},\"Function\":1},\"Name\":\"Avg(routes_latest_vehicles_gold.longitude)\",\"NativeReferenceName\":\"Average of longitude\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"latitude\"}},\"Function\":1},\"Name\":\"Avg(routes_latest_vehicles_gold.latitude)\",\"NativeReferenceName\":\"Average of latitude\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"speed_kmh\"}},\"Function\":5},\"Name\":\"Sum(routes_latest_vehicles_gold.speed_kmh)\",\"NativeReferenceName\":\"Count of speed_kmh\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"vehicle_id\"}},\"Function\":3},\"Name\":\"Min(tb_route_analysis.vehicle_id)\",\"NativeReferenceName\":\"Vehicle ID\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"progress_pct\"}},\"Function\":1},\"Name\":\"Sum(routes_latest_vehicles_gold.progress_pct)\",\"NativeReferenceName\":\"Progress %\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"speed_kmh\"}},\"Function\":1},\"Name\":\"Sum(routes_latest_vehicles_gold.speed_kmh)1\",\"NativeReferenceName\":\"Speed kmh\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"longitude\"}},\"Function\":1}}}]},\"columnProperties\":{\"Min(tb_route_analysis.vehicle_id)\":{\"displayName\":\"Vehicle ID\"},\"Sum(routes_latest_vehicles_gold.speed_kmh)1\":{\"displayName\":\"Speed kmh\"},\"Sum(routes_latest_vehicles_gold.progress_pct)\":{\"displayName\":\"Progress %\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"points\":[{\"properties\":{\"icon\":{\"expr\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"routes_latest_vehicles_gold\"}},\"Property\":\"icon_map\"}},\"Function\":3}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}]}},{\"properties\":{\"minSize\":{\"expr\":{\"Literal\":{\"Value\":\"40L\"}}}}}],\"formatting\":[{\"properties\":{\"fillTransparency\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"borderWidth\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"borderColour\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":9,\"Percent\":0}}}}},\"fillColour\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}},\"dashArray\":{\"expr\":{\"Literal\":{\"Value\":\"'2 4 4'\"}}}}},{\"properties\":{\"dashArray\":{\"expr\":{\"Literal\":{\"Value\":\"''\"}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}]}}],\"controls\":[{\"properties\":{\"zoom\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"autoZoomOverride\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"zoom\":[{\"properties\":{\"zoomOnSingleItem\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"mapLayers\":[{\"properties\":{\"grayscale\":{\"expr\":{\"Literal\":{\"Value\":\"50L\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"25L\"}}},\"backgroundMapLayer\":{\"expr\":{\"Literal\":{\"Value\":\"'Open Street Map - Humanitarian'\"}}}}}],\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 632.79,
+          "width": 1270.83,
+          "x": 9.17,
+          "y": 90.40,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"7a3c31a8b1cc7dc083c2\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1208.135593220339,\"y\":0,\"z\":2000,\"width\":73.22033898305084,\"height\":70.50847457627118,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"icon\":[{\"properties\":{\"shapeType\":{\"expr\":{\"Literal\":{\"Value\":\"'back'\"}}}},\"selector\":{\"id\":\"default\"}}]},\"vcObjects\":{\"visualLink\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"type\":{\"expr\":{\"Literal\":{\"Value\":\"'Back'\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 70.51,
+          "width": 73.22,
+          "x": 1208.14,
+          "y": 0.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"b35e6438e9400beb8e27\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":1191.5577889447236,\"height\":90.05025125628141,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"multiRowCard\",\"projections\":{\"Values\":[{\"queryRef\":\"tb_route_analysis.vehicle_id\"},{\"queryRef\":\"tb_route_analysis.eta_theoretical_min\"},{\"queryRef\":\"tb_route_analysis.eta_hero_min\"},{\"queryRef\":\"tb_route_analysis.eta_google_aware_min\"},{\"queryRef\":\"tb_route_analysis.distance_m_theoretical\"},{\"queryRef\":\"tb_route_analysis.distance_m_google\"},{\"queryRef\":\"tb_route_analysis.decision\"},{\"queryRef\":\"Sum(routes_latest_vehicles_gold.speed_kmh)\"},{\"queryRef\":\"tb_route_analysis.congestion_label\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"tb_route_analysis\",\"Type\":0},{\"Name\":\"r\",\"Entity\":\"routes_latest_vehicles_gold\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"vehicle_id\"},\"Name\":\"tb_route_analysis.vehicle_id\",\"NativeReferenceName\":\"Vehicle\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"eta_theoretical_min\"},\"Name\":\"tb_route_analysis.eta_theoretical_min\",\"NativeReferenceName\":\"Theoretical min\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"eta_hero_min\"},\"Name\":\"tb_route_analysis.eta_hero_min\",\"NativeReferenceName\":\"Hero min\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"eta_google_aware_min\"},\"Name\":\"tb_route_analysis.eta_google_aware_min\",\"NativeReferenceName\":\"Google Aware Min\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"distance_m_theoretical\"},\"Name\":\"tb_route_analysis.distance_m_theoretical\",\"NativeReferenceName\":\"Theoretical Distance\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"distance_m_google\"},\"Name\":\"tb_route_analysis.distance_m_google\",\"NativeReferenceName\":\"Google Distance\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"decision\"},\"Name\":\"tb_route_analysis.decision\",\"NativeReferenceName\":\"Decision\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"congestion_label\"},\"Name\":\"tb_route_analysis.congestion_label\",\"NativeReferenceName\":\"Congestion\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"speed_kmh\"}},\"Function\":0},\"Name\":\"Sum(routes_latest_vehicles_gold.speed_kmh)\",\"NativeReferenceName\":\"Sum of speed_kmh\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"vehicle_id\"}}}]},\"columnProperties\":{\"tb_route_analysis.vehicle_id\":{\"displayName\":\"Vehicle\"},\"tb_route_analysis.eta_theoretical_min\":{\"displayName\":\"Theoretical min\"},\"tb_route_analysis.eta_hero_min\":{\"displayName\":\"Hero min\"},\"tb_route_analysis.eta_google_aware_min\":{\"displayName\":\"Google Aware Min\"},\"tb_route_analysis.distance_m_theoretical\":{\"displayName\":\"Theoretical Distance\"},\"tb_route_analysis.distance_m_google\":{\"displayName\":\"Google Distance\"},\"tb_route_analysis.decision\":{\"displayName\":\"Decision\"},\"tb_route_analysis.congestion_label\":{\"displayName\":\"Congestion\"},\"Sum(routes_latest_vehicles_gold.speed_kmh)\":{\"displayName\":\"Avg Speed kmh\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"card\":[{\"properties\":{\"barShow\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"dataLabels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"16D\"}}}}}],\"categoryLabels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}]},\"vcObjects\":{\"general\":[{\"properties\":{\"keepLayerOrder\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 90.05,
+          "width": 1191.56,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"e9e082a43eacba1df4d5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":455.92630501535314,\"y\":195.20982599795292,\"z\":3000,\"width\":369.4575230296827,\"height\":98.25997952917093,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"tb_route_analysis.mission_id\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"tb_route_analysis\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"mission_id\"},\"Name\":\"tb_route_analysis.mission_id\",\"NativeReferenceName\":\"First mission_id\"}]},\"display\":{\"mode\":\"hidden\"},\"syncGroup\":{\"groupName\":\"mission_id\",\"fieldChanges\":true,\"filterChanges\":true},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"header\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"14D\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"tb_route_analysis\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"mission_id\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"20670L\"}}]]}}}]}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Select Mission'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"17D\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 98.26,
+          "width": 369.46,
+          "x": 455.93,
+          "y": 195.21,
+          "z": 3000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{\"visibility\":1}",
+      "displayName": "Telemetry Details",
+      "displayOption": 1,
+      "filters": "[{\"name\":\"ead8c469159d852951a9\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"tb_route_analysis\"}},\"Property\":\"vehicle_id\"}},\"type\":\"Categorical\",\"howCreated\":5},{\"name\":\"ae312d4662cfd728c4ab\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"tb_route_analysis\"}},\"Property\":\"mission_id\"}},\"type\":\"Categorical\",\"howCreated\":5},{\"name\":\"2a20c17fe83f258c7a19\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"routes_latest_vehicles_gold\"}},\"Property\":\"key\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"routes_latest_vehicles_gold\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"key\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'38ec467c-3ba0-4ee5-9624-cd757daf9c81-64-img'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":5}]",
+      "height": 720.00,
+      "name": "aec6a1727fc762f96140",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"568ed2d3e9f5677195ce\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1001,\"width\":1191.5577889447236,\"height\":90.05025125628141,\"tabOrder\":1001}}],\"singleVisual\":{\"visualType\":\"multiRowCard\",\"projections\":{\"Values\":[{\"queryRef\":\"tb_route_analysis.vehicle_id\"},{\"queryRef\":\"tb_route_analysis.eta_theoretical_min\"},{\"queryRef\":\"tb_route_analysis.eta_hero_min\"},{\"queryRef\":\"tb_route_analysis.eta_google_aware_min\"},{\"queryRef\":\"tb_route_analysis.distance_m_theoretical\"},{\"queryRef\":\"tb_route_analysis.distance_m_google\"},{\"queryRef\":\"tb_route_analysis.decision\"},{\"queryRef\":\"Sum(routes_latest_vehicles_gold.speed_kmh)\"},{\"queryRef\":\"tb_route_analysis.congestion_label\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"tb_route_analysis\",\"Type\":0},{\"Name\":\"r\",\"Entity\":\"routes_latest_vehicles_gold\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"vehicle_id\"},\"Name\":\"tb_route_analysis.vehicle_id\",\"NativeReferenceName\":\"Vehicle\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"eta_theoretical_min\"},\"Name\":\"tb_route_analysis.eta_theoretical_min\",\"NativeReferenceName\":\"Theoretical min\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"eta_hero_min\"},\"Name\":\"tb_route_analysis.eta_hero_min\",\"NativeReferenceName\":\"Hero min\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"eta_google_aware_min\"},\"Name\":\"tb_route_analysis.eta_google_aware_min\",\"NativeReferenceName\":\"Google Aware Min\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"distance_m_theoretical\"},\"Name\":\"tb_route_analysis.distance_m_theoretical\",\"NativeReferenceName\":\"Theoretical Distance\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"distance_m_google\"},\"Name\":\"tb_route_analysis.distance_m_google\",\"NativeReferenceName\":\"Google Distance\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"decision\"},\"Name\":\"tb_route_analysis.decision\",\"NativeReferenceName\":\"Decision\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"congestion_label\"},\"Name\":\"tb_route_analysis.congestion_label\",\"NativeReferenceName\":\"Congestion\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"speed_kmh\"}},\"Function\":0},\"Name\":\"Sum(routes_latest_vehicles_gold.speed_kmh)\",\"NativeReferenceName\":\"Sum of speed_kmh\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"vehicle_id\"}}}]},\"columnProperties\":{\"tb_route_analysis.vehicle_id\":{\"displayName\":\"Vehicle\"},\"tb_route_analysis.eta_theoretical_min\":{\"displayName\":\"Theoretical min\"},\"tb_route_analysis.eta_hero_min\":{\"displayName\":\"Hero min\"},\"tb_route_analysis.eta_google_aware_min\":{\"displayName\":\"Google Aware Min\"},\"tb_route_analysis.distance_m_theoretical\":{\"displayName\":\"Theoretical Distance\"},\"tb_route_analysis.distance_m_google\":{\"displayName\":\"Google Distance\"},\"tb_route_analysis.decision\":{\"displayName\":\"Decision\"},\"tb_route_analysis.congestion_label\":{\"displayName\":\"Congestion\"},\"Sum(routes_latest_vehicles_gold.speed_kmh)\":{\"displayName\":\"Avg Speed kmh\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"card\":[{\"properties\":{\"barShow\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"dataLabels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"16D\"}}}}}],\"categoryLabels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}]},\"vcObjects\":{\"general\":[{\"properties\":{\"keepLayerOrder\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 90.05,
+          "width": 1191.56,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 1001.00
+        },
+        {
+          "config": "{\"name\":\"a2e77732fee77a95231b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":132.73043478260868,\"z\":1002,\"width\":1279.7217391304348,\"height\":587.2695652173912,\"tabOrder\":1002}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"routes_latest_vehicles_gold.timestamp\"},{\"queryRef\":\"routes_latest_vehicles_gold.status\"},{\"queryRef\":\"Sum(routes_latest_vehicles_gold.progress_pct)\"},{\"queryRef\":\"Sum(routes_latest_vehicles_gold.sequence)\"},{\"queryRef\":\"Sum(routes_latest_vehicles_gold.speed_kmh)\"},{\"queryRef\":\"routes_latest_vehicles_gold.latitude\"},{\"queryRef\":\"routes_latest_vehicles_gold.longitude\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"routes_latest_vehicles_gold\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"sequence\"}},\"Function\":1},\"Name\":\"Sum(routes_latest_vehicles_gold.sequence)\",\"NativeReferenceName\":\"Average of sequence\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"speed_kmh\"}},\"Function\":1},\"Name\":\"Sum(routes_latest_vehicles_gold.speed_kmh)\",\"NativeReferenceName\":\"Average of speed_kmh\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"timestamp\"},\"Name\":\"routes_latest_vehicles_gold.timestamp\",\"NativeReferenceName\":\"timestamp\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"status\"},\"Name\":\"routes_latest_vehicles_gold.status\",\"NativeReferenceName\":\"status\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"progress_pct\"}},\"Function\":1},\"Name\":\"Sum(routes_latest_vehicles_gold.progress_pct)\",\"NativeReferenceName\":\"Average of progress_pct\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"latitude\"},\"Name\":\"routes_latest_vehicles_gold.latitude\",\"NativeReferenceName\":\"latitude\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"longitude\"},\"Name\":\"routes_latest_vehicles_gold.longitude\",\"NativeReferenceName\":\"longitude\"}]},\"drillFilterOtherVisuals\":true,\"filterSortOrder\":3,\"vcObjects\":{\"stylePreset\":[{\"properties\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'None'\"}}}}}]}}}",
+          "filters": "[{\"name\":\"e1862919761d0add6382\",\"expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"routes_latest_vehicles_gold\"}},\"Property\":\"sequence\"}},\"Function\":1}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":0},{\"name\":\"70b160f3cc18725b88b3\",\"expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"routes_latest_vehicles_gold\"}},\"Property\":\"speed_kmh\"}},\"Function\":1}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":1},{\"name\":\"eeed166b2b48efb77d5c\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"routes_latest_vehicles_gold\"}},\"Property\":\"latitude\"}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":2},{\"name\":\"48d29e74589e1bf3bcf9\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"routes_latest_vehicles_gold\"}},\"Property\":\"kind\"}},\"type\":\"Categorical\",\"howCreated\":1,\"ordinal\":3},{\"name\":\"24bdfd15ec07c1dd8ee3\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"routes_latest_vehicles_gold\"}},\"Property\":\"longitude\"}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":4},{\"name\":\"170cbae4fc71e7918166\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"routes_latest_vehicles_gold\"}},\"Property\":\"status\"}},\"type\":\"Categorical\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":5},{\"name\":\"2318740b7229c94b9960\",\"expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"routes_latest_vehicles_gold\"}},\"Property\":\"progress_pct\"}},\"Function\":0}},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":false,\"ordinal\":6},{\"name\":\"982dd22e5aa5e5076554\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"routes_latest_vehicles_gold\"}},\"Property\":\"timestamp\"}},\"type\":\"Categorical\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":7}]",
+          "height": 587.27,
+          "width": 1279.72,
+          "x": 0.00,
+          "y": 132.73,
+          "z": 1002.00
+        },
+        {
+          "config": "{\"name\":\"f2ea5cbb463350cde381\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1209.4915254237287,\"y\":0,\"z\":1000,\"width\":70.50847457627118,\"height\":70.50847457627118,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"icon\":[{\"properties\":{\"shapeType\":{\"expr\":{\"Literal\":{\"Value\":\"'back'\"}}}},\"selector\":{\"id\":\"default\"}}]},\"vcObjects\":{\"visualLink\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"type\":{\"expr\":{\"Literal\":{\"Value\":\"'Back'\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 70.51,
+          "width": 70.51,
+          "x": 1209.49,
+          "y": 0.00,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

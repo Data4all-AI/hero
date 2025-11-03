@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventstream",
+    "displayName": "routes_segments"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1085ad6c-152f-a37b-425f-be126262ee4a"
+  }
+}

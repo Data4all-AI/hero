@@ -1,0 +1,69 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/userDataFunction/definition/1.1.0/schema.json",
+  "runtime": "PYTHON",
+  "connectedDataSources": [
+    {
+      "alias": "lakehouse",
+      "artifactId": "9f3bd776-3fd4-b042-4f89-7df41d7761b2",
+      "artifactType": "Lakehouse",
+      "workspaceId": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "functions": [
+    {
+      "name": "get_route",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "publish_events",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "publish_vehicle_telemetry",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "send_sms_with_map",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    }
+  ],
+  "libraries": {
+    "public": [
+      {
+        "name": "azure-eventhub",
+        "type": "PYPI",
+        "version": "5.15.0"
+      },
+      {
+        "name": "azure-identity",
+        "type": "PYPI",
+        "version": "1.25.1"
+      },
+      {
+        "name": "azure-keyvault-secrets",
+        "type": "PYPI",
+        "version": "4.10.0"
+      },
+      {
+        "name": "fabric-user-data-functions",
+        "type": "PYPI",
+        "version": "1.0"
+      },
+      {
+        "name": "polyline",
+        "type": "PYPI",
+        "version": "2.0.3"
+      },
+      {
+        "name": "requests",
+        "type": "PYPI",
+        "version": "2.32.5"
+      }
+    ],
+    "private": []
+  }
+}

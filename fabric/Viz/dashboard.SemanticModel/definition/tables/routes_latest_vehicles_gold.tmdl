@@ -1,0 +1,126 @@
+table routes_latest_vehicles_gold
+	lineageTag: bea2c59e-b68c-4e3f-be94-5813ec440ade
+
+	column route_id
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: c81b887d-2c17-489c-baaf-27b095e73f27
+		summarizeBy: none
+		sourceColumn: route_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		sourceProviderType: double
+		lineageTag: e7322ab8-6019-41a4-8e52-a48970f29fab
+		dataCategory: Latitude
+		summarizeBy: sum
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		sourceProviderType: double
+		lineageTag: ff5d4957-7863-464f-9e13-bb826ea29e44
+		dataCategory: Longitude
+		summarizeBy: sum
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: bb98a241-3677-4374-ad51-81c8de6f5922
+		summarizeBy: sum
+		sourceColumn: sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column timestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetimeoffset
+		lineageTag: b74ae71d-3e2d-4653-b72a-fe82e1eca27a
+		summarizeBy: none
+		sourceColumn: timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column progress_pct
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: cbad5093-a2ba-4510-9c8a-55602ed7e7cd
+		summarizeBy: sum
+		sourceColumn: progress_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column speed_kmh
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 9bb8ba5e-e4e1-473e-9f24-9b89c03986ac
+		summarizeBy: sum
+		sourceColumn: speed_kmh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column status
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 86262144-71e0-479c-aea4-dbb12bf85067
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column icon_map
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 6d2e6dea-9578-489a-ab62-de846327bfa2
+		summarizeBy: none
+		sourceColumn: icon_map
+
+		annotation SummarizationSetBy = Automatic
+
+	column kind
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 64761333-7349-4f25-8634-6738e5adc0de
+		summarizeBy: none
+		sourceColumn: kind
+
+		annotation SummarizationSetBy = Automatic
+
+	column key
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 3393a151-75ef-4873-b08f-3233f9500808
+		summarizeBy: none
+		sourceColumn: key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition routes_latest_vehicles_gold = m
+		mode: directQuery
+		source =
+				let
+				    Source = AzureDataExplorer.Contents("https://trd-64402wcfv837yzr036.z9.kusto.fabric.microsoft.com", "eventhouse"),
+				    tb_route_analysis1 = Source{[Name="routes_latest_vehicles_gold"]}[Data]
+				in
+				    tb_route_analysis1
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

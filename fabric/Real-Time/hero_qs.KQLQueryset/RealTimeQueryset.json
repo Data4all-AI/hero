@@ -1,0 +1,34 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "bf012a29-a098-4d9a-a083-2e1ec215087a",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "88ea4d55-24d8-aea5-4816-6c5d751b8962",
+        "databaseItemName": "eventhouse"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "2987391d-1436-4959-a09b-93b771809e76",
+        "content": "tb_vehicles_telemetry\n| summarize arg_max(timestamp, *) by vehicle_id\n| join kind=leftouter tb_route_analysis on route_id\n| project\n    vehicle_id,\n    route_id,\n    status,\n    progress_pct,\n    speed_kmh,\n    eta_hero_min,\n    eta_google_aware_min,\n    decision,\n    latitude,\n    longitude,\n    timestamp\n| extend eta_diff_min = eta_google_aware_min - eta_hero_min\n| order by vehicle_id asc\n",
+        "title": "Latest vehicle position",
+        "dataSourceId": "bf012a29-a098-4d9a-a083-2e1ec215087a"
+      },
+      {
+        "id": "cd1c26a3-240f-45e8-b6c3-e2be8b31bdfd",
+        "content": "let route =\n    tb_route_segments\n        // make sure coords are numeric\n    | extend latitude  = todouble(latitude), longitude = todouble(longitude)\n    // choose the ordering field: prefer 'sequence', else fall back to 'point_index', else 0\n    | extend point_order = toint( column_ifexists(\"sequence\", column_ifexists(\"point_index\", 0)) )\n    | project\n        route_id,\n        vehicle_id = tostring(column_ifexists(\"vehicle_id\",\"\")),\n        latitude,\n        longitude,\n        point_order,\n        timestamp,\n        progress_pct = int(0),\n        speed_kmh = int(0),\n        status = 'na',\n        ['kind'] = \"route\",\n        ['shape_type'] = \"━\";\nlet live =\n    tb_vehicles_telemetry\n    | summarize arg_max(timestamp, *) by vehicle_id\n    | extend latitude = todouble(latitude), longitude = todouble(longitude)\n    | project\n        route_id,\n        vehicle_id,\n        latitude,\n        longitude,\n        point_order = int(0),\n        timestamp,\n        progress_pct,\n        speed_kmh,\n        status,\n        ['kind'] = \"vehicle\",\n        ['shape_type'] = \"🚑\";\nunion route, live\n| order by route_id asc, kind asc, point_order asc",
+        "title": "",
+        "dataSourceId": "bf012a29-a098-4d9a-a083-2e1ec215087a"
+      },
+      {
+        "id": "7efd2061-4370-4ead-9d04-dcb0636487bd",
+        "content": "let route_base =\n    tb_route_segments\n    | extend latitude = todouble(latitude), longitude = todouble(longitude), sequence = toint(sequence)\n    | sort by route_id asc, sequence asc\n    | summarize\n        wkt = strcat(\n            \"LINESTRING(\",\n            strcat_array(make_list(strcat(longitude, \" \", latitude)), \", \"),\n            \")\"\n        )\n      by route_id;\nlet telem =\n    tb_vehicles_telemetry\n    | extend latitude = todouble(latitude), longitude = todouble(longitude), progress_pct = toint(progress_pct), speed_kmh = todouble(speed_kmh), timestamp = todatetime(timestamp);\ntelem\n| join kind=leftouter (route_base) on route_id\n| project\n    route_id,\n    vehicle_id,\n    latitude,\n    longitude,\n    sequence,\n    timestamp,\n    progress_pct,\n    speed_kmh,\n    status,\n    icon_map = \"https://img.icons8.com/?size=100&id=14739&format=png&color=000000\",\n    key = strcat(route_id, \"-\", tostring(sequence), \"-\", \"img\")\n| union (\n    telem\n    | join kind=leftouter (route_base) on route_id\n    | project\n        route_id,\n        vehicle_id,\n        \"\",\n        \"\",\n        sequence,\n        timestamp,\n        progress_pct,\n        speed_kmh,\n        status,\n        icon_map = wkt,\n        key = strcat(route_id, \"-\", tostring(sequence), \"-\", \"wkt\")\n)\n| order by route_id asc, timestamp asc, sequence asc\n",
+        "title": "",
+        "dataSourceId": "bf012a29-a098-4d9a-a083-2e1ec215087a"
+      }
+    ]
+  }
+}

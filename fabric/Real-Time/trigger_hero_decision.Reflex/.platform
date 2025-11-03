@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Reflex",
+    "displayName": "trigger_hero_decision"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "fc3fb20a-110c-8455-42ad-5fee6e4696a7"
+  }
+}

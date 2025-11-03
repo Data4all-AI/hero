@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "hero_route_decision"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "13ed6b61-1ce3-9acb-4890-28a2c2f0934c"
+  }
+}

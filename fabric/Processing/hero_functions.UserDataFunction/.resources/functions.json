@@ -1,0 +1,109 @@
+{
+  "runtime": "PYTHON",
+  "functionsMetadata": [
+    {
+      "name": "get_route",
+      "scriptFile": "function_app.py",
+      "bindings": [
+        {
+          "name": "req",
+          "type": "HttpTrigger",
+          "direction": "In",
+          "authLevel": "Anonymous",
+          "methods": [
+            "POST"
+          ],
+          "route": ""
+        }
+      ],
+      "fabricProperties": {
+        "fabricMetadataSchemaVersion": "1.1.0",
+        "fabricFunctionReturnType": "dict",
+        "fabricFunctionParameters": [
+          {
+            "name": "params",
+            "dataType": "dict"
+          }
+        ]
+      }
+    },
+    {
+      "name": "publish_events",
+      "scriptFile": "function_app.py",
+      "bindings": [
+        {
+          "name": "req",
+          "type": "HttpTrigger",
+          "direction": "In",
+          "authLevel": "Anonymous",
+          "methods": [
+            "POST"
+          ],
+          "route": ""
+        }
+      ],
+      "fabricProperties": {
+        "fabricMetadataSchemaVersion": "1.1.0",
+        "fabricFunctionReturnType": "dict",
+        "fabricFunctionParameters": [
+          {
+            "name": "params",
+            "dataType": "dict"
+          }
+        ]
+      }
+    },
+    {
+      "name": "publish_vehicle_telemetry",
+      "scriptFile": "function_app.py",
+      "bindings": [
+        {
+          "name": "req",
+          "type": "HttpTrigger",
+          "direction": "In",
+          "authLevel": "Anonymous",
+          "methods": [
+            "POST"
+          ],
+          "route": ""
+        }
+      ],
+      "fabricProperties": {
+        "fabricMetadataSchemaVersion": "1.1.0",
+        "fabricFunctionReturnType": "dict",
+        "fabricFunctionParameters": [
+          {
+            "name": "params",
+            "dataType": "dict"
+          }
+        ]
+      }
+    },
+    {
+      "name": "send_sms_with_map",
+      "scriptFile": "function_app.py",
+      "bindings": [
+        {
+          "name": "req",
+          "type": "HttpTrigger",
+          "direction": "In",
+          "authLevel": "Anonymous",
+          "methods": [
+            "POST"
+          ],
+          "route": ""
+        }
+      ],
+      "fabricProperties": {
+        "fabricMetadataSchemaVersion": "1.1.0",
+        "fabricFunctionReturnType": "dict",
+        "fabricFunctionParameters": [
+          {
+            "name": "params",
+            "dataType": "dict"
+          }
+        ]
+      }
+    }
+  ]
+}

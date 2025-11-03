@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventstream",
+    "displayName": "vehicles_telemetry"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "829eeaf0-0535-b21a-429e-f9b0cb294363"
+  }
+}

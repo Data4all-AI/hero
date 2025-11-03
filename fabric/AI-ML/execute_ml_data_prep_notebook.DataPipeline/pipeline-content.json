@@ -1,0 +1,21 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "42849fb5-d6a8-bc42-4c61-5442eb453407",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "execute ml_data_prep notebook",
+        "dependsOn": []
+      }
+    ]
+  }
+}

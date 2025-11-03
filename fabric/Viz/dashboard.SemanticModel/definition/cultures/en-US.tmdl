@@ -1,0 +1,179 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "tb_route_analysis.vehicle_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_route_analysis",
+			          "ConceptualProperty": "vehicle_id"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Vehicle": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tb_route_analysis.eta_theoretical_min": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_route_analysis",
+			          "ConceptualProperty": "eta_theoretical_min"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Theoretical min": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tb_route_analysis.eta_hero_min": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_route_analysis",
+			          "ConceptualProperty": "eta_hero_min"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Hero min": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tb_route_analysis.eta_google_aware_min": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_route_analysis",
+			          "ConceptualProperty": "eta_google_aware_min"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Google Traffic Min": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tb_route_analysis.distance_m_theoretical": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_route_analysis",
+			          "ConceptualProperty": "distance_m_theoretical"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Distance theoretical": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tb_route_analysis.distance_m_google": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_route_analysis",
+			          "ConceptualProperty": "distance_m_google"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Google Distance": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tb_route_analysis.decision": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_route_analysis",
+			          "ConceptualProperty": "decision"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Decision": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tb_route_analysis.congestion_label": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_route_analysis",
+			          "ConceptualProperty": "congestion_label"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Congestion": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

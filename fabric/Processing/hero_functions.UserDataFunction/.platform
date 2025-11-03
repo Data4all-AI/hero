@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "UserDataFunction",
+    "displayName": "hero_functions"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "bca5aad3-caa6-b7ae-461e-bcdba93c0ff9"
+  }
+}

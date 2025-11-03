@@ -1,0 +1,131 @@
+{
+  "sources": [
+    {
+      "id": "d0ba7147-9021-432b-9a2d-b0a938b1d330",
+      "name": "CustomEndpoint-Vehicles-Telemetry",
+      "type": "CustomEndpoint",
+      "properties": {}
+    }
+  ],
+  "destinations": [
+    {
+      "id": "b15e13c1-1fac-40b4-8fd9-7c864fd300a3",
+      "name": "Eventhouse",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "ProcessedIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "88ea4d55-24d8-aea5-4816-6c5d751b8962",
+        "databaseName": "eventhouse",
+        "tableName": "tb_vehicles_telemetry",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "vehiclestelemetry-stream"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "vehiclestelemetry-stream",
+          "schema": {
+            "columns": [
+              {
+                "name": "vehicle_id",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "route_id",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "sequence",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "timestamp",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "latitude",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "longitude",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "status",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "progress_pct",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "speed_kmh",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "EventProcessedUtcTime",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "PartitionId",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "EventEnqueuedUtcTime",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "e00e273a-e1c5-4951-9053-43bb2127fe0e",
+      "name": "vehiclestelemetry-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "CustomEndpoint-Vehicles-Telemetry"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.1"
+}

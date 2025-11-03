@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "MLExperiment",
+    "displayName": "ml_siren_advantage-AutoMLExperiment"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0ce12cbf-d143-8657-42eb-6924949b01e3"
+  }
+}

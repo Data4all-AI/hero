@@ -1,0 +1,29 @@
+{
+  "version": "3.3.2.1",
+  "author": {
+    "name": "James Dales",
+    "email": "support@icon-map.com"
+  },
+  "resources": [
+    {
+      "resourceId": "rId0",
+      "sourceType": 5,
+      "file": "resources/iconMapV34089C0EB522B416294AA926F71B4FDBBx.pbiviz.json"
+    }
+  ],
+  "visual": {
+    "guid": "iconMapV34089C0EB522B416294AA926F71B4FDBBx",
+    "name": "iconMapV3",
+    "displayName": "iconMapV3",
+    "version": "3.3.2.1",
+    "description": "Map Visual for Power BI based on the Leaflet library. Provides the ability to draw images, lines, Well Known Text (WKT), GeoJson layers on a map with custom backgrounds, overlays with WMS support.",
+    "supportUrl": "https://icon-map.com/support",
+    "gitHubUrl": "",
+    "visualClassName": "Visual"
+  },
+  "metadata": {
+    "pbivizjson": {
+      "resourceId": "rId0"
+    }
+  }
+}

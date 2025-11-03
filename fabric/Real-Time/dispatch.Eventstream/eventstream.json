@@ -1,0 +1,402 @@
+{
+  "sources": [
+    {
+      "id": "a5f07a01-2151-4029-bce5-d6dcd19649ee",
+      "name": "AzureSqlDb",
+      "type": "AzureSQLDBCDC",
+      "properties": {
+        "dataConnectionId": "8415c9eb-71b5-413f-8e2f-b3648202f00d",
+        "tableName": "hero.dispatches"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "id": "05de2673-db52-4e5c-bd14-66b57ebbc18f",
+      "name": "Activator",
+      "type": "Activator",
+      "properties": {
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "fc3fb20a-110c-8455-42ad-5fee6e4696a7",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "SqlCode"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "SqlCode",
+          "schema": {
+            "columns": []
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "3dafdc90-934b-4171-b27f-30bda1adb773",
+      "name": "dispatch-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "AzureSqlDb"
+        }
+      ]
+    }
+  ],
+  "operators": [
+    {
+      "name": "SqlCode",
+      "type": "SQL",
+      "inputNodes": [
+        {
+          "name": "dispatch-stream"
+        }
+      ],
+      "properties": {
+        "query": "--Init Query\nSELECT\npayload.[after].dispatch_id AS dispatch_id,\npayload.[after].emergency_reporting_number AS emergency_reporting_number,\npayload.[after].dispatch_number AS dispatch_number,\npayload.[after].status AS status,\npayload.[after].dispatch_triage_code AS dispatch_triage_code,\npayload.[after].incident_location_latitude AS incident_location_latitude,\npayload.[after].incident_location_longitude AS incident_location_longitude,\npayload.[after].vehicle_number AS vehicle_number,\npayload.[after].vehicle_origin_latitude AS vehicle_origin_latitude,\npayload.[after].vehicle_origin_longitude AS vehicle_origin_longitude,\npayload.[after].origin_coordinate AS origin_coordinate,\npayload.[after].incident_coordinate AS incident_coordinate,\nDATEADD(\n MICROSECOND,\n  (payload.[after].dispatch_datetime % 1000000000) / 1000,\n   DATEADD(\n    SECOND, \n     payload.[after].dispatch_datetime / 1000000000,\n      '1970-01-01'\n      )\n    ) AS dispatch_datetime_utc\nINTO [Activator] FROM [dispatch-stream]\nwhere payload.[after].dispatch_id is not null"
+      },
+      "inputSchemas": [
+        {
+          "name": "dispatch-stream",
+          "schema": {
+            "columns": [
+              {
+                "name": "schema",
+                "type": "Record",
+                "fields": [
+                  {
+                    "name": "type",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "fields",
+                    "type": "Array",
+                    "fields": null,
+                    "items": {
+                      "name": null,
+                      "type": "Record",
+                      "fields": [
+                        {
+                          "name": "type",
+                          "type": "Nvarchar(max)",
+                          "fields": null,
+                          "items": null
+                        },
+                        {
+                          "name": "optional",
+                          "type": "Nvarchar(max)",
+                          "fields": null,
+                          "items": null
+                        },
+                        {
+                          "name": "field",
+                          "type": "Nvarchar(max)",
+                          "fields": null,
+                          "items": null
+                        },
+                        {
+                          "name": "fields",
+                          "type": "Array",
+                          "fields": null,
+                          "items": {
+                            "name": null,
+                            "type": "Record",
+                            "fields": [
+                              {
+                                "name": "type",
+                                "type": "Nvarchar(max)",
+                                "fields": null,
+                                "items": null
+                              },
+                              {
+                                "name": "optional",
+                                "type": "Nvarchar(max)",
+                                "fields": null,
+                                "items": null
+                              },
+                              {
+                                "name": "field",
+                                "type": "Nvarchar(max)",
+                                "fields": null,
+                                "items": null
+                              }
+                            ],
+                            "items": null
+                          }
+                        },
+                        {
+                          "name": "name",
+                          "type": "Nvarchar(max)",
+                          "fields": null,
+                          "items": null
+                        },
+                        {
+                          "name": "version",
+                          "type": "BigInt",
+                          "fields": null,
+                          "items": null
+                        }
+                      ],
+                      "items": null
+                    }
+                  },
+                  {
+                    "name": "optional",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "name",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "version",
+                    "type": "BigInt",
+                    "fields": null,
+                    "items": null
+                  }
+                ],
+                "items": null
+              },
+              {
+                "name": "payload",
+                "type": "Record",
+                "fields": [
+                  {
+                    "name": "before",
+                    "type": "Record",
+                    "fields": [],
+                    "items": null
+                  },
+                  {
+                    "name": "after",
+                    "type": "Record",
+                    "fields": [
+                      {
+                        "name": "dispatch_id",
+                        "type": "BigInt",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "emergency_reporting_number",
+                        "type": "BigInt",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "dispatch_number",
+                        "type": "BigInt",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "status",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "dispatch_triage_code",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "incident_location_latitude",
+                        "type": "Float",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "incident_location_longitude",
+                        "type": "Float",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "vehicle_number",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "vehicle_origin_latitude",
+                        "type": "Float",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "dispatch_datetime",
+                        "type": "BigInt",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "vehicle_origin_longitude",
+                        "type": "Float",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "incident_coordinate",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "origin_coordinate",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      }
+                    ],
+                    "items": null
+                  },
+                  {
+                    "name": "source",
+                    "type": "Record",
+                    "fields": [
+                      {
+                        "name": "version",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "connector",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "name",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "ts_ms",
+                        "type": "BigInt",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "snapshot",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "db",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "sequence",
+                        "type": "Record",
+                        "fields": [],
+                        "items": null
+                      },
+                      {
+                        "name": "ts_us",
+                        "type": "BigInt",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "ts_ns",
+                        "type": "BigInt",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "schema",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "table",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "change_lsn",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "commit_lsn",
+                        "type": "Nvarchar(max)",
+                        "fields": null,
+                        "items": null
+                      },
+                      {
+                        "name": "event_serial_no",
+                        "type": "BigInt",
+                        "fields": null,
+                        "items": null
+                      }
+                    ],
+                    "items": null
+                  },
+                  {
+                    "name": "transaction",
+                    "type": "Record",
+                    "fields": [],
+                    "items": null
+                  },
+                  {
+                    "name": "op",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "ts_ms",
+                    "type": "BigInt",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "ts_us",
+                    "type": "BigInt",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "ts_ns",
+                    "type": "BigInt",
+                    "fields": null,
+                    "items": null
+                  }
+                ],
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "compatibilityLevel": "1.1"
+}

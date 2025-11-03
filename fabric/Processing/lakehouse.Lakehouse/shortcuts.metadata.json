@@ -1,0 +1,41 @@
+[
+  {
+    "name": "tb_vehicles_telemetry_silver",
+    "path": "/Tables/dbo",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/tb_vehicles_telemetry_silver",
+        "itemId": "88ea4d55-24d8-aea5-4816-6c5d751b8962",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "KustoDatabase"
+      }
+    }
+  },
+  {
+    "name": "tb_route_segments_silver",
+    "path": "/Tables/dbo",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/tb_route_segments_silver",
+        "itemId": "88ea4d55-24d8-aea5-4816-6c5d751b8962",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "KustoDatabase"
+      }
+    }
+  },
+  {
+    "name": "tb_route_analysis_silver",
+    "path": "/Tables/dbo",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/tb_route_analysis_silver",
+        "itemId": "88ea4d55-24d8-aea5-4816-6c5d751b8962",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "KustoDatabase"
+      }
+    }
+  }
+]

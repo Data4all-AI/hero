@@ -1,0 +1,58 @@
+{
+  "sources": [
+    {
+      "id": "6ee307dd-693a-46ed-b8a6-f2ec53eda9c5",
+      "name": "CustomEndpoint-Source",
+      "type": "CustomEndpoint",
+      "properties": {}
+    }
+  ],
+  "destinations": [
+    {
+      "id": "9f7649be-aa83-458c-a00c-b77c3b0a5bfc",
+      "name": "Eventhouse",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "ProcessedIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "88ea4d55-24d8-aea5-4816-6c5d751b8962",
+        "databaseName": "eventhouse",
+        "tableName": "tb_route_analysis",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "routesanalysis-stream"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "routesanalysis-stream",
+          "schema": {
+            "columns": []
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "28842127-af1f-4638-9bc9-b106e4c8e7b7",
+      "name": "routesanalysis-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "CustomEndpoint-Source"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.1"
+}

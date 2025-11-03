@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "execute_ml_data_prep_notebook"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3b56511f-064d-80a5-44a9-e96ca723713c"
+  }
+}
