@@ -2,74 +2,56 @@
 
 # HERO — Hybrid Emergency Route Optimizer on Microsoft Fabric
 
-> **TL;DR**: We built an end-to-end, real-time “lights & sirens” routing solution on **Microsoft Fabric**.  
-> It compares Google traffic-aware vs theoretical routes, applies a **siren advantage** (heuristic + ML), picks the faster one, **streams** the chosen path + live vehicle telemetry, renders it in **Power BI**, and **texts an SMS with a static map** via **Twilio**.
+## Overview
+
+Emergency response teams are true heroes — but the navigation tools they rely on often aren’t. Traditional systems like Google Maps or Waze are optimized for everyday drivers, not emergency vehicles. During critical missions, these systems can suggest routes congested by the very incidents they’re responding to, or fail to consider that emergency vehicles with sirens can bypass certain traffic rules.
+
+HERO (Hybrid Emergency Route Optimizer) leverages Microsoft Fabric and real-time data intelligence to provide AI-driven route recommendations tailored for emergency missions. It ingests live traffic data, mission dispatch feeds, and vehicle telemetry into Fabric’s Real-Time Intelligence Hub, continuously comparing standard navigation routes with AI-adjusted emergency alternatives.
+
+An embedded AI model learns how siren-equipped vehicles perform under different traffic and incident conditions — estimating the “siren advantage” dynamically. HERO then generates real-time alerts and dashboards for both dispatch control centers and field units, showing the optimal route, expected arrival time, and estimated time saved.
+
+---
+
+## Key Features
+
+⚡ Real-Time Fabric Integration: Streams traffic and mission data through Fabric Real-Time Hub and Eventhouse.
+
+🧠 AI-Enhanced Routing: Dynamically adjusts travel times using congestion data and emergency-vehicle performance profiles.
+
+🛰️ Adaptive Rerouting: Responds instantly to changing traffic conditions or new incidents.
+
+📊 Control-Center Dashboard: Built in Power BI on Fabric — live map, mission tracker, ETA savings, congestion hotspots.
+
+🔔 Automated Notifications: Sends updates to mobile teams or dispatchers when route decisions change.
+
+---
+
+## ⚡ Expected Impact 
+
+HERO aims to reduce emergency response times by 10–20%, helping first responders reach critical locations faster and more safely. Beyond routing, the system’s data foundation can support predictive dispatching, fleet optimization, emergency analytics, and cross-agency coordination.
+
+By combining AI, real-time intelligence, and Microsoft Fabric’s unified analytics platform, HERO demonstrates how technology can empower the people who save lives with great scalability.
 
 ---
 
 ## ✨ What it does
 
-- Calls **Google Routes API** twice:
-  - **TRAFFIC_AWARE_OPTIMAL** (live traffic baseline)
-  - **TRAFFIC_UNAWARE** (theoretical no-traffic baseline)
-- Computes a “**siren advantage**”:
-  - Heuristic fallback
-  - **AutoML regression** (trained in Fabric) when available
-- Chooses the faster option and **publishes**:
-  - Route analysis (decision, ETAs, congestion score)
-  - Route segments (polyline decoded to points)
-  - Live vehicle telemetry (simulated at ETA pace, stops on arrival; expected to come from real vehicles)
-- **Power BI** report shows:
-  - **LINESTRING** route (WKT)
-  - Moving vehicle icon
-  - Vehicle telemetry history
-- Sends an **SMS with a static route map** via **Twilio**
+- 🚑 Picks the **fastest emergency route** *right now*:
+  - Compares Google **TRAFFIC_AWARE_OPTIMAL** vs **TRAFFIC_UNAWARE**
+- 🧠 Applies **siren advantage**:
+  - **AutoML regression** (trained in Fabric with historical telemetry and route decision data) or **heuristic fallback**
+- 📡 Chooses the faster option and **Streams** everything into **Microsoft Fabric** for real-time decision-making:
+  - Route analysis, decoded polyline segments, and vehicle telemetry paced by ETA
+- 🗺️ Shows the route + moving vehicle in **Power BI**:
+  - LINESTRING for the route + an icon for the vehicle
+- 📲 Sends **SMS** with a **Google Static Map** link via Twilio
 
 ---
 
 ## 🧱 Architecture (high level)
 
-### 🧰 Tech stack
-- **Microsoft Fabric**: Eventhouse (KQL), Eventstreams, Notebooks, UDFs, AutoML/MLflow, Lakehouse, Pipelines, Variables, Activator
-- **Azure**: SQL Azure Database, Key Vault
-- **Google**: Routes API (Directions v2)
-- **Power BI**
-- **Twilio**: Programmable SMS
-  
+ <img width="1122" height="949" alt="hero_HLA" src="https://github.com/user-attachments/assets/08d10ee2-4194-4b69-ac10-bce23de93e5d" />
 
-
-
-    
-
-
-
-**Core Fabric pieces**  
-- **Eventhouse (KQL DB)**: `tb_route_analysis`, `tb_route_segments`, `tb_vehicles_telemetry` (bronze)  
-- **Silver tables**: cleaned/cast versions + processed timestamp  
-- **Routes lookup**: `tb_routes_lookup` (per-route WKT LINESTRING)  
-- **Gold function**: final shape for the map (vehicle icon rows + WKT rows)  
-- **UDFs** (`hero_functions`): for modularity and to avoid installing non default libraries in environments for speed
-  - `get_route(params)` – calls Google, returns polyline + congestion (requires `extraComputations: TRAFFIC_ON_POLYLINE`)
-  - `publish_events(params)` – pushes to Event Hubs
-  - `publish_vehicle_telemetry(params)` – sends telemetry batches/points
-- **Notebook**: **hero_route_decision.ipynb** only python kernel for speed, the goal was to keep latency as little as possible. 
-  - Gets routes, applies heuristic/ML, decides, publishes events, simulates and streams telemetry, sends SMS
-- **AutoML**: regression to predict **siren_advantage**  
-- **Power BI**: report (ambulance icon + LINESTRING)
-- **Activator**: sends an email to alert the Emergency Operations Center or the Ambulance Emergency Dispatch of a new dispatch with triage color code and it triggers `hero_route_decision.ipynb` notebook, the core of the solution when triage color <> 'green'
-
----
-
-## 🧪 Key features
-
-- **Two-route comparison** (aware vs theoretical)
-- **Siren advantage**:
-  - Heuristic: `0.10 + 0.25 * congestion_score (capped 35%)`
-  - ML model (AutoML regression) with fallback to heuristic model
-- **Congestion** from Google: `extraComputations: TRAFFIC_ON_POLYLINE`
-- **Telemetry** paced by ETA; **stops on arrival**
-- **WKT LINESTRING** builder for smooth Maps visual rendering
-- **SMS** with Google Static Map link via **Twilio**
 
 ---
 
@@ -83,7 +65,7 @@
   - `twilio-sid`
   - `twilio-token`
  
-  - **Fabric Variables** for:
+- **Fabric Variables** for:
   - `azure-key-vault`
   - `ML-model`
 
@@ -102,54 +84,180 @@
 - Add `processed_timestamp = now()`
 - Cast `latitude/longitude` to `real`, `sequence` to `int`, etc.
 - Correct `status`
-
-**Routes wkt (helper)**  
-- `tb_routes_lookup(route_id, wkt)`  
-- Built from `tb_route_segments_silver`:
-  - `LINESTRING(lon lat, lon lat, ...)` sorted by `sequence`
+- Helper tables like `tb_routes_wkt(route_id, wkt)` with derived columns needed to handle geometries
 
 **Gold (view/function for Power BI)**  
 - **Materialized View** to get latest position by vehicle `mv_latest_telem`  
 - **Function** `routes_latest_vehicles_gold` which is the union of:
   - **Vehicle icon rows** (with `icon_map` URL, real lat/lon) from `mv_latest_telem`
-  - **WKT rows** (with `icon_map = wkt`, lat/lon set to `null`) from `tb_routes_wkt_silver`
+  - **tb_routes_wkt** (with `icon_map = wkt`, lat/lon set to `null`) from `tb_routes_wkt_silver`
 - **Function** `vehicle_telemetry_gold` for telemetry analysis
 
 ---
 
-## 🚀 How to run (demo path)
+## 🚀 Installation Guide for Microsoft Fabric — HERO
 
-1. **Configure database for CDC**
-2. **Deploy UDFs** (`hero_functions` collection):
-   - `get_route`, `publish_events`, `publish_vehicle_telemetry`
-3. **Set Fabric Variables** (see Secrets & config).
-4. **Set Azure Key Vault Secrets**  (see Secrets & config).
-5. **Run notebook** `hero_route_decision.ipynb`:
-   - Inputs: `mission_id`, `vehicle_id`, `origin_lat`, `origin_lon`, `dest_lat`, `dest_lon`
-   - It:
-     - Calls Google (aware + theoretical)
-     - Computes ML siren advantage (fallback to heuristic)
-     - Publishes analysis + segments
-     - Starts telemetry streaming to Event Hubs
-     - Sends Twilio SMS with static map
-6. **KQL**:
-   - Build silver tables and `tb_routes_lookup`  
-   - Use **gold function** in Power BI for Azure Maps
-7. **Power BI**:
-   - Use **Icon Map** visual
-   - Bind **icon rows** to point layer (ambulance PNG)
-   - Bind **WKT rows** to line layer (route polyline)
-   - Filter by `route_id` and/or `vehicle_id`
+To set up **HERO** end-to-end:
+
+### 0) Setup Google API and Twilio accounts
+
+Make sure to configure and get Google API key and Twilio SID, Token, Virtual Number from and Virtual Number To.
+
+### 1) Prep your SQL source (Dispatches)
+
+Run the 3 SQL files in `sql/` against your SQL database **in this order**:
+
+1. `01_create_tables.sql`
+2. `02_enable_cdc.sql`
+3. `03_create_dispatches_simulation_sp.sql`
+
+> This table + CDC are the upstream source that Fabric ingests and that activates the core of the solution: the `hero_route_decision.ipynb` notebook
 
 ---
 
+### 2) Create a Microsoft Fabric workspace
+
+Use a workspace with capacity that can safely run **Notebooks** and **Real-time intelligence**.
+
+---
+
+### 3) Fork / Import the repository
+
+Fork or import this GitHub repo so you can link it to Fabric.
+
+---
+
+### 4) Link the `fabric/` folder to your Fabric workspace
+
+Linking the `fabric/` folder will auto-hydrate the Fabric artifacts in your workspace
+(Eventhouse, KQL Database, Notebooks, Data Functions, etc).
+
+---
+
+### 5) Verify Eventhouse & KQL database
+
+Confirm the default **Eventhouse** and its **KQL database** were created.
+These host the bronze/silver tables and gold functions/views.
+
+---
+
+### 6) EventStreams
+
+Ensure these EventStreams exist and configure the connections:
+
+- `dispatch` for dispatches coming from SQL DB — configure Azure SQL Database CDC connection using Azure Key Vault
+- `routes_analysis` for route decision output —> copy custom point Event Hub SAS Key Authentication Conn Strg and create secret in Azure Key Vault 
+- `routes_segments` for chosen route points (polyline decoded) —> copy custom point Event Hub SAS Key Authentication Conn Strg and create secret in Azure Key Vault 
+- `vehicles_telemetry` for simulated vehicle telemetry —> copy custom point Event Hub SAS Key Authentication Conn Strg and create secret in Azure Key Vault 
+
+---
+
+### 7) Set Fabric Variables and remaining Azure Key Vault secrets
+
+In **Azure Key Vault**, create/update:
+
+- `google-maps-api-key`
+- `conn-str-route-analysis`
+- `conn-str-route-segments`
+- `conn-str-vehicles-telemetry`
+- `twilio-sid`
+- `twilio-token`
+- `twilio-from-number`
+- `twilio-to-number`
+
+> grant workspace MI access to Azure Key Vault with Key Vault Reader and Key Vault Secret User roles.
+
+- In **Fabric → Variables**, create/update:
+
+- `siren-model`
+- `azure-key-vault`
+
+---
+
+### 8) (Optional) Train the ML model once
+
+- run the ml_data_prep to prepare data for ML model. Schedule the pipeline to update table in batch at least once per day and in any case according to your EventHouse data retention rules.
+- Open the **AutoML_siren_advantage** notebook from the workspace.
+- Ensure training data table (`ml_siren_advantage_regression`) was created and correctly populated
+- Run the notebook to create experiments and **register the model** in the Fabric Model Registry.
+- Update model version in variables (see step above)
+
+---
+
+### 9) Smoke test
+
+1. EXEC stored procedure created in step **1.3** to simulate dispatches `[hero].[RunFakeDispatchStream]`
+2. Confirm dispatch inserts are flowing and that Dispatch EvenStream is correctly mirroring sql dispatched via CDC
+3. Check the Activator starts triggering mail alert and `hero_route_decision.ipynb` notebook correctly passing parameters. The notebook:
+   - Reads incoming **dispatches** (CDC) and calls **Google Routes** twice:
+      - `TRAFFIC_AWARE_OPTIMAL` *(with `extraComputations=TRAFFIC_ON_POLYLINE`)*
+      - `TRAFFIC_UNAWARE`
+   - Computes congestion score from speed intervals on the polyline.
+   - Applies **ML siren advantage** (falls back to heuristic if the model isn’t available).
+   - Publishes:
+      - **Route analysis** (decision, ETAs, congestion) → `tb_route_analysis`
+      - **Chosen route segments** (decoded points) → `tb_route_segments`
+      - Starts **ETA-paced telemetry** → `tb_vehicles_telemetry`
+      - Sends **SMS** with **Google Static Map** to the configured number.  
+4. Watch:
+   - Eventhouse tables fill (**analysis**, **segments**, **telemetry**).
+   - Power BI map shows **route** + **moving vehicle**.
+   - SMS map link opens the correct static map.
+---
+
+### 10) Open the Power BI report
+
+- Open the report from the workspace and ensure the semantic model connects to the **gold** function/view.
+- Icon map setup:
+  - **Layer 1 (Line)** → bind the **WKT `LINESTRING`** column (route).
+  - **Layer 2 (Icon)** → bind **latitude/longitude** (vehicle) and icon URL (ambulance).
+- Filter by `route_id` / `vehicle_id` to demo a mission.
+
+---
+
+### 11) Twilio check (SMS)
+
+- Verify Twilio receiver (a virtual number is fine).
+- Confirm the **SMS** arrives with a **clickable map URL**.
+
+---
+
+> After these steps, your **HERO** system should be operational. 🎉
+
+---
+
+#### Notes
+
+- The repo includes **silver** transforms and **gold** functions to power the report.
+- If you change EventStream names or table names, update the variable wiring and sinks accordingly.
+- For production, schedule the **ML data prep** notebook (daily) and re-train periodically if desired; 
+
+
+---
 ## ⚙️ Notable implementation details
 
-- **Congestion extraction** requires:
+- **Congestion extraction** requires adding this to the request body:
   ```json
-  "extraComputations": "TRAFFIC_ON_POLYLINE"```
-  and field mask includes:
-    routes.legs.travelAdvisory.speedReadingIntervals.(startPolylinePointIndex,endPolylinePointIndex,speed)
+  {
+    "extraComputations": "TRAFFIC_ON_POLYLINE"
+  }
+
+  
+- And **field mask** includes:
+  ```http
+  {
+  POST https://routes.googleapis.com/directions/v2:computeRoutes
+  Headers:
+  Content-Type: application/json
+  X-Goog-Api-Key: <YOUR_API_KEY>
+  X-Goog-FieldMask: routes.duration,
+                    routes.distanceMeters,
+                    routes.polyline.encodedPolyline,
+                    routes.legs.travelAdvisory.speedReadingIntervals.startPolylinePointIndex,
+                    routes.legs.travelAdvisory.speedReadingIntervals.endPolylinePointIndex,
+                    routes.legs.travelAdvisory.speedReadingIntervals.speed
+  }
+
 - **ML live scoring**:
   - Loads the latest registered model via MLflow
   - Input schema: [congestion_score, eta_theoretical_min, distance_m_theoretical, hour_of_day, dow, avg_speed_kmh, telemetry_points]
