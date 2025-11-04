@@ -8,15 +8,13 @@ model Model
 
 annotation ModelPopulated = value
 
-annotation PBI_QueryOrder = ["routes_vehicles","tb_route_analysis","routes_vehicles_last_position_v2","routes_vehicles_last_position_v2 (2)","routes_latest_vehicles_gold"]
+annotation PBI_QueryOrder = ["tb_route_analysis","routes_latest_vehicles_gold","vehicles_telemetry_gold"]
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-ref table routes_vehicles
 ref table tb_route_analysis
-ref table routes_vehicles_last_position_v2
-ref table 'routes_vehicles_last_position_v2 (2)'
 ref table routes_latest_vehicles_gold
+ref table vehicles_telemetry_gold
 
 ref cultureInfo en-US
 

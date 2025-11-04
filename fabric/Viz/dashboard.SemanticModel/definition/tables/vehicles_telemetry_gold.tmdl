@@ -1,0 +1,124 @@
+table vehicles_telemetry_gold
+	lineageTag: 2707d6b0-6fe6-4855-ba01-0f786a3bfe29
+
+	column route_id
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: f7f9763c-59c2-4fe0-804a-06494860da12
+		summarizeBy: none
+		sourceColumn: route_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column vehicle_id
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: e46dbc49-7d72-40a8-a1ed-ff581ce0112f
+		summarizeBy: none
+		sourceColumn: vehicle_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 026e5110-63c6-4312-acb0-719188423a4f
+		summarizeBy: sum
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		sourceProviderType: double
+		lineageTag: e58ba52b-65a3-4031-a8df-03b7f4f4e7a5
+		summarizeBy: sum
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 5f4ed514-fecd-4aa1-bccc-3b5a4d7f7060
+		summarizeBy: sum
+		sourceColumn: sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column timestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetimeoffset
+		lineageTag: d27bedb5-933f-47fb-9195-c7150da33e45
+		summarizeBy: none
+		sourceColumn: timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column progress_pct
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2d6b6b34-ec2a-49c3-a6b7-aab03e4b7a6e
+		summarizeBy: sum
+		sourceColumn: progress_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column speed_kmh
+		dataType: double
+		sourceProviderType: double
+		lineageTag: ff7bb928-5c96-443f-92a5-a173920c0604
+		summarizeBy: sum
+		sourceColumn: speed_kmh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column status
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: ad6ef22a-fceb-4ae5-a7b8-2ffd87480a99
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column wkt
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 0e1aa32a-d59b-4e52-98ea-aae3f0b26080
+		summarizeBy: none
+		sourceColumn: wkt
+
+		annotation SummarizationSetBy = Automatic
+
+	column key
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: c7626c11-e068-4bed-a654-bac92f38327a
+		summarizeBy: none
+		sourceColumn: key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vehicles_telemetry_gold = m
+		mode: directQuery
+		source =
+				let
+				    Source = AzureDataExplorer.Contents("https://trd-64402wcfv837yzr036.z9.kusto.fabric.microsoft.com", "eventhouse"),
+				    vehicles_telemetry_gold = Source{[Name="vehicles_telemetry_gold"]}[Data]
+				in
+				    vehicles_telemetry_gold
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,12 +1,8 @@
-relationship 5e506fa1-6a45-dea3-f1a6-9373be630467
-	fromColumn: routes_vehicles.route_id
-	toColumn: tb_route_analysis.route_id
-
-relationship a1815fd7-4e79-df26-93f6-4a5778595f31
-	fromColumn: routes_vehicles_last_position_v2.route_id
-	toColumn: tb_route_analysis.route_id
-
 relationship a63eb91a-c355-8c25-bd67-23caa9d0eb3c
 	fromColumn: routes_latest_vehicles_gold.route_id
+	toColumn: tb_route_analysis.route_id
+
+relationship 7a9e621a-eb3c-41f9-1a83-72ee068d2936
+	fromColumn: vehicles_telemetry_gold.route_id
 	toColumn: tb_route_analysis.route_id
 
