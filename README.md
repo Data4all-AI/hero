@@ -88,6 +88,8 @@ By combining AI, real-time intelligence, and Microsoft Fabric’s unified analyt
   - **tb_routes_wkt** (with `icon_map = wkt`, lat/lon set to `null`) from `tb_routes_wkt_silver`
 - **Function** `vehicle_telemetry_gold` for telemetry analysis
 
+<img width="1908" height="370" alt="image" src="https://github.com/user-attachments/assets/928958a5-47e0-4081-a30b-5c06b559a9a1" />
+
 ---
 
 ## 🚀 Installation Guide for Microsoft Fabric — HERO
