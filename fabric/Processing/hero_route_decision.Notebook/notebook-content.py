@@ -101,6 +101,7 @@ MODEL_NAME = variable_lib.getVariable("siren-model")
 API_KEY = notebookutils.credentials.getSecret(VAULT_URL,"google-maps-api-key")
 EH_CONN_ANALYSIS = notebookutils.credentials.getSecret(VAULT_URL,"conn-str-route-analysis")
 EH_CONN_SEGMENTS = notebookutils.credentials.getSecret(VAULT_URL,"conn-str-route-segments")
+EH_CONN_TELEMETRY = notebookutils.credentials.getSecret(VAULT_URL,"conn-str-vehicles-telemetry")
 TWILIO_SID = notebookutils.credentials.getSecret(VAULT_URL,"twilio-sid")
 TWILIO_FROM = notebookutils.credentials.getSecret(VAULT_URL,"twilio-from-number")
 TWILIO_TOKEN = notebookutils.credentials.getSecret(VAULT_URL,"twilio-token")
@@ -373,7 +374,6 @@ print({
 # Telemetry Simulation
 # ====================================================
 
-EH_CONN_TELEMETRY = variable_lib.getVariable("conn-str-vehicles-telemetry")
 
 def stream_telemetry_eta_based(points, vehicle_id, route_id, eta_min):
     """
