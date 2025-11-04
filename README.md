@@ -37,6 +37,10 @@ An embedded AI model learns how siren-equipped vehicles perform under different 
 
 🔔 Automated Notifications: Sends updates to mobile teams or dispatchers when route decisions change.
 
+
+![Untitled video - Made with Clipchamp (5)](https://github.com/user-attachments/assets/0a382696-87e0-4cf2-805c-95c1e4488b65)
+
+
 ---
 
 ## ⚡ Expected Impact 
