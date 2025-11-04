@@ -17,7 +17,7 @@
 
 ## Overview
 
-Emergency response teams are true heroes — but the navigation tools they rely on often aren’t. Traditional systems like Google Maps or Waze are optimized for everyday drivers, not emergency vehicles. During critical missions, these systems can suggest routes congested by the very incidents they’re responding to, or fail to consider that emergency vehicles with sirens can bypass certain traffic rules.
+Emergency response teams are true heroes — but the navigation tools they rely on often aren’t. In Lombardy, Italy, emergency response teams use traditional systems like Google Maps or Waze which are optimized for everyday drivers, not emergency vehicles. During critical missions, these systems can suggest routes congested by the very incidents they’re responding to, or fail to consider that emergency vehicles with sirens can bypass certain traffic rules.
 
 HERO (Hybrid Emergency Route Optimizer) leverages Microsoft Fabric and real-time data intelligence to provide AI-driven route recommendations tailored for emergency missions. It ingests live traffic data, mission dispatch feeds, and vehicle telemetry into Fabric’s Real-Time Intelligence Hub, continuously comparing standard navigation routes with AI-adjusted emergency alternatives.
 
@@ -147,7 +147,7 @@ Ensure these EventStreams exist and configure the connections:
 
 ---
 
-### 7) Set Fabric Variables and remaining Azure Key Vault secrets
+### 7) Set Fabric Variables and Azure Key Vault secrets
 
 In **Azure Key Vault**, create/update:
 
